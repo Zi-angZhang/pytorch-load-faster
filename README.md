@@ -71,13 +71,13 @@ self.trainingFeeder = DataLoader(dataset=trainingSet, batch_size=self.batchSize,
 
 使用time库查看神经网络子数据准备、推理、更新过程中的时间耗费
 
-![newplot (assets/newplot (4)-1566303210134.png)](../../../Downloads/newplot (4).png)
+![img4](assets/newplot (4).png '8 workers')
 
-![newplot (assets/newplot (3)-1566303210134.png)](../../../Downloads/newplot (3).png)
+![img3](assets/newplot (3).png '8 wokers')
 
-![newplot (assets/newplot (2)-1566303210134.png)](../../../Downloads/newplot (2).png)
+![img2](assets/newplot (2).png '16 workers')
 
-![newplot (assets/newplot (1)-1566303210134.png)](../../../Downloads/newplot (1).png)
+![img1](assets/Downloads/newplot (1).png '16 workers')
 
 __Pinned__ memories promise faster copy between CPU memory and GPU memory:
 
@@ -103,7 +103,7 @@ The forwarding and weight updating procedure is too complicated to optimize beca
 
 > The reason causing is the slow reading of discountiuous small chunks. 
 
-Months ago I was still using __HDF5__ format as data medians, Though elegant and efficient, h5 file are vulnerable with parallel reading which happens in `torch.utils.DataLoader`.  _Tensorflow_ has its own `TFRecord` and _MXNET_  do have its `recordIO`, suggested by <https://github.com/Lyken17/Efficient-PyTorch>, I decided to try __lmdb__ instead.
+Months ago I was still using __HDF5__ format as data medians, Though elegant and efficient, h5 file are vulnerable with parallel reading which happens in `torch.utils.DataLoader`.  _Tensorflow_ has its own `TFRecord` and _MXNET_  do have its `recordIO`, suggested by <https://github.com/Lyken17/Efficient-PyTorch>, I decided to try __lmdb__ (lightweight Memory-mapped Data Base) instead.
 
 I also found these short comparison between __hdf5__ and __lmdb__ in <http://deepdish.io/2015/04/28/creating-lmdb-in-python/>:
 
