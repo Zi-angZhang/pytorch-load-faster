@@ -71,13 +71,13 @@ self.trainingFeeder = DataLoader(dataset=trainingSet, batch_size=self.batchSize,
 
 使用time库查看神经网络子数据准备、推理、更新过程中的时间耗费
 
-![img4](assets/newplot (4).png '8 workers')
+![img4](assets/plot4.png '8 workers')
 
-![img3](assets/newplot (3).png '8 wokers')
+![img3](assets/plot3.png '8 wokers')
 
-![img2](assets/newplot (2).png '16 workers')
+![img2](assets/plot2.png '16 workers')
 
-![img1](assets/Downloads/newplot (1).png '16 workers')
+![img1](assets/plot1.png '16 workers')
 
 __Pinned__ memories promise faster copy between CPU memory and GPU memory:
 
