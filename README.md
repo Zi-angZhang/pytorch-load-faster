@@ -71,13 +71,13 @@ self.trainingFeeder = DataLoader(dataset=trainingSet, batch_size=self.batchSize,
 
 使用time库查看神经网络子数据准备、推理、更新过程中的时间耗费
 
-![newplot (/home/pdfexe/Desktop/temp/pytorch-load-faster/assets/newplot (4)-1566303098897.png)](/home/pdfexe/Downloads/newplot (4).png)
+![newplot (assets/newplot (4)-1566303210134.png)](../../../Downloads/newplot (4).png)
 
-![newplot (/home/pdfexe/Desktop/temp/pytorch-load-faster/assets/newplot (3)-1566303076680.png)](/home/pdfexe/Downloads/newplot (3).png)
+![newplot (assets/newplot (3)-1566303210134.png)](../../../Downloads/newplot (3).png)
 
-![newplot (/home/pdfexe/Desktop/temp/pytorch-load-faster/assets/newplot (2)-1566303076680.png)](/home/pdfexe/Downloads/newplot (2).png)
+![newplot (assets/newplot (2)-1566303210134.png)](../../../Downloads/newplot (2).png)
 
-![newplot (/home/pdfexe/Desktop/temp/pytorch-load-faster/assets/newplot (1)-1566303076680.png)](/home/pdfexe/Downloads/newplot (1).png)
+![newplot (assets/newplot (1)-1566303210134.png)](../../../Downloads/newplot (1).png)
 
 __Pinned__ memories promise faster copy between CPU memory and GPU memory:
 
