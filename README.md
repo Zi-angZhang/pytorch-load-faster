@@ -2,6 +2,10 @@
 
 ## 深度学习中的CPU、IO瓶颈
 
+# !!! important! I am stilling working on this project, no significant optimization has been done yet!
+
+
+
 ### 问题的提出
 
 I found large batch size (i.e. 128) can conserve significant amount of time when training a deep learning model (i.e. SRCNN by He. et. al) compared to smaller batch implementation (i.e. 8). Considering the importance of small batch training in fine tuning, I decided to dive to such problem and solve it in a elegant manner.
@@ -154,13 +158,15 @@ In our implementation, the key would be `bytes(index)`, values would be serializ
 
 ##### structure of my data stored in lmdb
 
-| Keys | Values                                                       |
-| ---- | ------------------------------------------------------------ |
-| b'1' | compress(serialize({input:`ndarray`, label:`ndarray`}).to_buffer()) |
+| Keys | Values                                                 |
+| ---- | ------------------------------------------------------ |
+| b'1' | compress(serialize((`ndarray`, `ndarray`).to_buffer()) |
 
 `to_buffer` method maps the serialized data into continuous memory which can be stored.
 
 
+
+[Creating](lmdbPrepare.py) and [reading](lmdbDatabase.py) codes are attached.
 
 
 
@@ -170,7 +176,24 @@ One thing that makes __lmdb__ a little annoying is that one should have the map_
 
 
 
+##### performance
 
+Better, but not so much better :(
 
+![lmdb4](assets/lmdb4.png)
 
+![lmdb3](assets/lmdb3.png)
 
+![lmdb2](assets/lmdb2.png)
+
+![lmdb1](assets/lmdb1.png)
+
+Above results are based on experiments with `input_size = 16`, the __pinned memory__ is not working as told in its documents.  When we choose `input_size = 64` instead, benefit of pinned memory shows up.
+
+![size4](assets/size4.png)
+
+![size3](assets/size3.png)
+
+![size2](assets/size2.png)
+
+![size1](assets/size1.png)
