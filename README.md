@@ -99,13 +99,21 @@ The forwarding and weight updating procedure is too complicated to optimize beca
 
 #### 数据的读取
 
+I currently read `.png` files directly from my SSD, laying heavy burden to CPU to read them into `ndarrays`, this could be a reason that all my CPUs are loaded up to 100% while training (no over loading happens thanks to dynamic loading design of pytorch data loader). Saving the processed data into a binary  file, especially a continuously saved binary file, could be a directly inspired idea.
+
+
+
+Note that personally I am by no means a expert in databases, I can't guarantee the depth and robustness of my understanding about __lmdb__, suggestions and corrections are highly appreciated. 
+
+
+
 传统的数据读取方法是直接从硬盘中逐个读取
 
 > The reason causing is the slow reading of discountiuous small chunks. 
 
-Months ago I was still using __HDF5__ format as data medians, Though elegant and efficient, h5 file are vulnerable with parallel reading which happens in `torch.utils.DataLoader`.  _Tensorflow_ has its own `TFRecord` and _MXNET_  do have its `recordIO`, suggested by <https://github.com/Lyken17/Efficient-PyTorch>, I decided to try __lmdb__ (lightweight Memory-mapped Data Base) instead.
+Months ago I was still using __HDF5__ format as data medians. Though elegant and efficient, h5 files are vulnerable with parallel reading which happens in `torch.utils.DataLoader`(though there is a SWMR feature, I failed to configure the program to a stable state).  _Tensorflow_ has its own `TFRecord` and _MXNET_  do have its `recordIO`, suggested by <https://github.com/Lyken17/Efficient-PyTorch>, _Pytorch_ deserve a better data storage format e.g. __lmdb__ (lightweight Memory-mapped Data Base).
 
-I also found these short comparison between __hdf5__ and __lmdb__ in <http://deepdish.io/2015/04/28/creating-lmdb-in-python/>:
+I also found these short-while-clear comparison between __hdf5__ and __lmdb__ in <http://deepdish.io/2015/04/28/creating-lmdb-in-python/>:
 
 >Reasons to use HDF5:
 >
@@ -133,6 +141,30 @@ pip install lmdb
 # or you prefer conda installation
 conda install python-lmdb
 ```
+
+##### structure of lmdb
+
+| Keys                     | Values                   |
+| ------------------------ | ------------------------ |
+| key01 (type = `bytes()`) | value01 (type=`bytes()`) |
+
+> Always explicitly encode and decode any Unicode values before passing them to LMDB. --- docs
+
+In our implementation, the key would be `bytes(index)`, values would be serialized and compressed by `pyarray` and `lz4framed` as suggested by <https://www.basicml.com/performance/2019/05/18/efficiently-storing-and-retrieving-image-datasets.html>, thanks a lot.
+
+##### structure of my data stored in lmdb
+
+| Keys | Values                                                       |
+| ---- | ------------------------------------------------------------ |
+| b'1' | compress(serialize({input:`ndarray`, label:`ndarray`}).to_buffer()) |
+
+`to_buffer` method maps the serialized data into continuous memory which can be stored.
+
+
+
+
+
+One thing that makes __lmdb__ a little annoying is that one should have the map_size bear in mind before writing, thus dealing with image set that doesn't regularize its contained images into a fixed size calls for a good estimation of required size (searched the docs, but no `resize` method was found. Note that hdf5 is resizable).
 
 
 
