@@ -53,6 +53,7 @@ self.trainingFeeder = DataLoader(dataset=trainingSet, batch_size=self.batchSize,
 |  0%   46C    P2   106W / 250W |    920MiB / 11170MiB |     37%      Default |
 
 #### for `batch_size=64`, 4 min per epoch:
+
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
 | ----------------------------- | -------------------- | -------------------- |
 |   0  GeForce GTX 108...  Off  | 00000000:02:00.0  On |                  N/A |
@@ -62,6 +63,7 @@ self.trainingFeeder = DataLoader(dataset=trainingSet, batch_size=self.batchSize,
 |  0%   53C    P2   154W / 250W |    978MiB / 11170MiB |     52%      Default |
 
 #### for `batch_size=128`, 3 min per epoch:
+
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
 | ----------------------------- | -------------------- | -------------------- |
 |   0  GeForce GTX 108...  Off  | 00000000:02:00.0  On |                  N/A |
