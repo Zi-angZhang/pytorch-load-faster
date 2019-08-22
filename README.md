@@ -45,29 +45,29 @@ self.trainingFeeder = DataLoader(dataset=trainingSet, batch_size=self.batchSize,
 #### for `batch_size=32`, 6 min per epoch:
 
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| ------------------------------ | -------------------- | -------------------- |
+| ----------------------------- | -------------------- | -------------------- |
 |   0  GeForce GTX 108...  Off  | 00000000:02:00.0  On |                  N/A |
 
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-| ------------------------------ | ----------------- | -------------------- |
+| ----------------------------- | -------------------- | -------------------- |
 |  0%   46C    P2   106W / 250W |    920MiB / 11170MiB |     37%      Default |
 
 #### for `batch_size=64`, 4 min per epoch:
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| ------------------------------ | -------------------- | -------------------- |
+| ----------------------------- | -------------------- | -------------------- |
 |   0  GeForce GTX 108...  Off  | 00000000:02:00.0  On |                  N/A |
 
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-| ------------------------------ | -------------------- | -------------------- |
+| ----------------------------- | -------------------- | -------------------- |
 |  0%   53C    P2   154W / 250W |    978MiB / 11170MiB |     52%      Default |
 
 #### for `batch_size=128`, 3 min per epoch:
 | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| ------------------------------ | -------------------- | -------------------- |
+| ----------------------------- | -------------------- | -------------------- |
 |   0  GeForce GTX 108...  Off  | 00000000:02:00.0  On |                  N/A |
 
 | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-| ------------------------------ | -------------------- | -------------------- |
+| ----------------------------- | -------------------- | -------------------- |
 | 26%   63C    P2   201W / 250W |   1238MiB / 11170MiB |     84%      Default |
 
 
